@@ -114,9 +114,9 @@ st.markdown("""
     /* Sidebar */
     .sidebar-section {
         background: #f8f9fa;
-        padding: 1rem;
+        padding: 0.5rem 1rem;
         border-radius: 8px;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
     }
     
     /* Metrics */
@@ -179,60 +179,56 @@ st.markdown("""
 # SIDEBAR - CONFIGURATION
 # ============================================================================
 with st.sidebar:
-    st.header("⚙️ Configuration")
+    st.markdown("<h2 style='margin-top: 0px; margin-bottom: 5px;'>⚙️ Configuration</h2>", unsafe_allow_html=True)
     
     # Model Selection
     with st.container():
-        st.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
-        st.subheader("🤖 Model Selection")
+
         model_option = st.selectbox(
-            "Choose Model",
+            "🤖 Model Selection",
             ["VGG16 (98.18% Accuracy)", "CNN (74.30% Accuracy)"],
             help="VGG16 uses transfer learning, CNN is custom-built from scratch"
         )
         model_type = "VGG16" if "VGG16" in model_option else "CNN"
-        st.markdown('</div>', unsafe_allow_html=True)
+
     
     # Confidence Threshold
     with st.container():
-        st.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
-        st.subheader("🎯 Confidence Threshold")
+
         confidence_threshold = st.slider(
-            "Minimum Confidence for Detection",
+            "🎯 Confidence Threshold",
             min_value=0.0,
             max_value=1.0,
             value=0.5,
             step=0.05,
             help="Lower threshold = more sensitive (more alerts), Higher threshold = more specific (fewer false alerts)"
         )
-        st.markdown('</div>', unsafe_allow_html=True)
+
     
     # Imaging Modality
     with st.container():
-        st.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
-        st.subheader("📷 Imaging Modality")
+
         modality = st.selectbox(
-            "Scan Type",
+            "📷 Imaging Modality",
             ["X-ray", "MRI", "CT Scan"],
             help="Select the type of medical image being analyzed"
         )
-        st.markdown('</div>', unsafe_allow_html=True)
+
     
     # Patient Information (Optional)
     with st.container():
-        st.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
-        st.subheader("👤 Patient Information")
-        st.caption("Optional - for report generation")
-        patient_name = st.text_input("Patient Name", placeholder="e.g., kabir")
+
+        st.markdown("<div style='font-weight: 600; font-size: 14px; margin-bottom: 5px;'>👤 Patient Information</div>", unsafe_allow_html=True)
+        patient_name = st.text_input("Patient Name", placeholder="e.g., kabir", label_visibility="collapsed")
         patient_age = st.number_input("Age", min_value=0, max_value=120, value=45, step=1)
         patient_gender = st.selectbox("Gender", ["", "Male", "Female"])
         patient_symptoms = st.text_area("Symptoms", placeholder="e.g., cough, fever, chest pain", height=60)
-        st.markdown('</div>', unsafe_allow_html=True)
+
     
     # Model Status
     with st.container():
-        st.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
-        st.subheader("📊 Model Status")
+
+        st.markdown("<div style='font-weight: 600; font-size: 14px; margin-bottom: 5px;'>📊 Model Status</div>", unsafe_allow_html=True)
         models_exist = check_models_exist()
         if models_exist['vgg16']:
             st.success("✅ VGG16 model loaded")
@@ -242,7 +238,7 @@ with st.sidebar:
             st.success("✅ CNN model loaded")
         else:
             st.warning("⚠️ CNN model not found")
-        st.markdown('</div>', unsafe_allow_html=True)
+
 
 # ============================================================================
 # MAIN AREA - IMAGE UPLOAD
