@@ -21,7 +21,7 @@ A Streamlit-based web application that:
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/yourusername/Medical_Imaging_Assistant.git
+git clone https://github.com/KabirSoomro/Medical_Imaging_Assistant
 cd Medical_Imaging_Assistant
 
 # 2. Install dependencies
